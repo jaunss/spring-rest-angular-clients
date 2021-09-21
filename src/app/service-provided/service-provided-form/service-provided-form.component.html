@@ -1,0 +1,53 @@
+<h1 class="mt-4">Service Provided</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">
+
+    </li>
+</ol>
+
+<div class="container">
+    <form #form="ngForm" (submit)="onSubmit()">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Client: </label>
+                    <select class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="service.idClientEntity">
+                        <option value="">Select...</option>
+                        <option *ngFor="let client of clients" [ngValue]="client.idClient">
+                            {{ client.nameClient }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Description: </label>
+                    <input class="form-control" [(ngModel)]="service.descriptionServiceProvided" type="text" id="idDescription" name="descriptionServiceProvided">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Value: </label>
+                    <input class="form-control" [(ngModel)]="service.valueServiceProvided" type="text" id="idValue" name="valueServiceProvided">
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Date: </label>
+                    <input class="form-control" [(ngModel)]="service.dateServiceProvided" type="text" id="idDate" name="dateServiceProvided">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Save</button>
+            </div>
+        </div>
+    </form>
+</div>

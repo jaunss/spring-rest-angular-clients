@@ -1,0 +1,70 @@
+<h1 class="mt-4">Clients</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active"> {{ client.idClient ? 'Edition' : 'Creation' }}</li>
+</ol>
+<div class="container">
+    <form #clientsForm="ngForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-success" role="alert" *ngIf="success == true">
+                    Customer Saved/Successfully Updated!
+                </div>
+
+                <div class="alert alert-danger" role="alert" *ngFor="let error of errors">
+                    {{ error }}
+                </div>
+            </div>
+        </div>
+
+        <div class="row" *ngIf="client.idClient">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>ID: </label>
+                    <input type="text" class="form-control" name="idClient" [ngModel]="client.idClient" disabled="true" />
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Data Registration: </label>
+                    <input type="text" class="form-control" name="dataRegistrationClient" [ngModel]="client.dataRegistrationClient" disabled="true" />
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Name: *</label>
+                    <input type="text" class="form-control" name="nameClient" [(ngModel)]="client.nameClient" />
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>CPF: *</label>
+                    <input type="text" class="form-control" name="cpfClient" [(ngModel)]="client.cpfClient" />
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-success" *ngIf="!client.idClient">
+                    <i class="fa fa-save"></i> 
+                    Save Client
+                </button>
+
+                <button type="submit" class="btn btn-primary" *ngIf="client.idClient">
+                    <i class="fa fa-sync-alt"></i> 
+                    Update Client
+                </button>
+
+                <button type="button" class="btn btn-danger ml-1" (click)="returnList()">
+                    <i class="fa fa-arrow-alt-circle-left"></i> 
+                    Return
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
