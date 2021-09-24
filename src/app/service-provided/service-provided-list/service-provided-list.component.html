@@ -1,0 +1,69 @@
+<h1 class="mt-4">Service Provided</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">Consultation</li>
+</ol>
+
+<div class="container">
+    <form #consultForm="ngForm" (submit)="consult()">
+        <div class="alert alert-warning" role="alert" *ngIf="message">
+            {{ message }}
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <label for="idName">Name Client: </label>
+                <input type="text" id="idName" name="name" [(ngModel)]="name" class="form-control">
+            </div>
+
+            <div class="col-md-6">
+                <label for="idMonth">Month: </label>
+                <select id="idMonth" name="month" [(ngModel)]="month" class="form-control">
+                    <option value="">Select...</option>
+                    <option *ngFor="let month of months" [value]="month">
+                        {{ month }}
+                    </option>
+                </select>
+            </div>
+        </div>
+
+        <br/>
+
+        <div class="row">
+            <div class="col-md-4">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fa fa-search"></i> 
+                    Consult
+                </button>
+
+                <button type="button" class="btn btn-success ml-1" routerLink="/service-provided-form">
+                    <i class="fa fa-plus"></i> 
+                    New
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <br/>
+
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Value</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let service of listService">
+                        <td>{{ service.descriptionServiceProvided }}</td>
+                        <td>{{ service.valueServiceProvided }}</td>
+                        <td>{{ service.dateServiceProvided }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

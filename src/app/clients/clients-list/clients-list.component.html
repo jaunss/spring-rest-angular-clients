@@ -30,15 +30,14 @@
             <table class="table table-condensed table-hover">
                 <thead>
                     <tr>
-                        <th>Data Registration</th>
                         <th>Name</th>
                         <th>CPF</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
 
                 <tbody>
                     <tr *ngFor="let client of clients">
-                        <td>{{ client.dataRegistrationClient }}</td>
                         <td>{{ client.nameClient }}</td>
                         <td>{{ client.cpfClient }}</td>
                         <td>
