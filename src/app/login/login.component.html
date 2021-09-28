@@ -12,6 +12,10 @@
                             </div>
 
                             <div class="card-body">
+                                <div class="alert alert-success" *ngIf="messageSuccess">
+                                    {{ messageSuccess }}
+                                </div>
+
                                 <div class="alert alert-danger" *ngIf="loginError">
                                     Incorrect login and/or password
                                 </div>
@@ -34,7 +38,7 @@
                                             Enter
                                         </button>
 
-                                        <button type="button" class="btn btn-success" *ngIf="signingUp">
+                                        <button type="button" class="btn btn-success" (click)="register()" *ngIf="signingUp">
                                             Register
                                         </button>
 
