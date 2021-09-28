@@ -12,9 +12,9 @@ export class LoginComponent {
 
   username!: string;
   password!: string;
-  loginError!: boolean;
   signingUp!: boolean;
   messageSuccess!: string;
+  errors: String[] = [];
 
   constructor(
     private router: Router,
@@ -42,9 +42,14 @@ export class LoginComponent {
     user.passwordUser = this.password;
     this.authService.insertUser(user).subscribe(response => {
       this.messageSuccess = "Registration performed successfully. Log in.";
-      this.loginError = false;
-    }, error => {
-      this.loginError = true;
+      this.signingUp = false;
+      this.username = "";
+      this.password = "";
+      this.errors = [];
+
+    }, errorResponse => {
+      this.messageSuccess = "";
+      this.errors = errorResponse.error.errors;
     });
   }
 
