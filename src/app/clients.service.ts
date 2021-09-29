@@ -14,12 +14,7 @@ export class ClientsService {
   constructor(private http: HttpClient) {}
 
    insertClient(client: Client) : Observable<Client> {
-     const token = JSON.parse(localStorage.getItem('access_token') || '{}');
-     const headers = {
-       'Authorization': 'Bearer ' + token.access_token
-     }
-
-    return this.http.post<Client>(`${this.apiURL}`, client, { headers });
+    return this.http.post<Client>(`${this.apiURL}`, client);
    }
 
    updateClient(client: Client) : Observable<any> {
@@ -27,11 +22,7 @@ export class ClientsService {
    }
 
    findAllClients() : Observable<Client[]> {
-     const token = JSON.parse(localStorage.getItem('access_token') || '{}');
-     const headers = {
-       'Authorization': 'Bearer ' + token.access_token
-     }
-     return this.http.get<Client[]>(this.apiURL, { headers });
+     return this.http.get<Client[]>(this.apiURL);
    }
 
    findByIdClient(idClient: number) : Observable<Client> {
