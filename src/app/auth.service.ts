@@ -16,6 +16,10 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
+  isAuthenticated(): boolean {
+    return false;
+  }
+
   insertUser(user: User): Observable<any> {
     return this.http.post<any>(this.apiURL, user);
   }
