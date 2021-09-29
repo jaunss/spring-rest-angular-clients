@@ -28,6 +28,20 @@ export class AuthService {
     return null;
   }
 
+  finishSession() {
+    localStorage.removeItem('access_token');
+  }
+
+  getUserAuthenticated() {
+    const token = this.getToken();
+    if (token) {
+      const user = this.jwtHelper.decodeToken(token).user_name;
+      return user;
+    }
+
+    return null;
+  }
+
   isAuthenticated(): boolean {
     const token = this.getToken();
     if (token) {
