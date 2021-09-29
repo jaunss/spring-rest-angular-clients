@@ -22,7 +22,13 @@ export class LoginComponent {
   ) { }
 
   onSubmit() {
-    this.router.navigate(['/home']);
+    this.authService.tryToLogin(this.username, this.password)
+      .subscribe(response => {
+        console.log(response);
+        this.router.navigate(['/home']);
+      }, errorResponse => {
+        this.errors = ['Incorrect username and/or password.'];
+      });
   }
 
   prepareSigningUp(event: {
