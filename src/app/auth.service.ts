@@ -1,5 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { User } from './login/user';
@@ -13,10 +14,27 @@ export class AuthService {
   tokenURL: string = environment.apiURLBase + environment.getTokenUrl;
   clientID: string = environment.clientId;
   clientSecret: string = environment.clientSecret;
+  jwtHelper: JwtHelperService = new JwtHelperService();
 
   constructor(private http: HttpClient) { }
 
+  getToken() {
+    const tokenString = localStorage.getItem('access_token');
+    if (tokenString) {
+      const token = JSON.parse(tokenString).access_token;
+      return token;
+    }
+
+    return null;
+  }
+
   isAuthenticated(): boolean {
+    const token = this.getToken();
+    if (token) {
+      const expired = this.jwtHelper.isTokenExpired(token);
+      return !expired;
+    }
+
     return false;
   }
 
